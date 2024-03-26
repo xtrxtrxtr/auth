@@ -1,44 +1,34 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples_for 'has_uuid' do
-  let(:model) { described_class.to_s.underscore.to_sym }
-  let!(:existing_entity) { create(model) }
-
   shared_examples 'assigning new uuid' do
     it 'generates uuid' do
-      expect(entity.uuid).to be_present
+      expect(subject.uuid).to be_present
     end
   end
 
-  describe 'validation' do
-    it 'passes with unique uuid' do
-      expect(build(model)).to be_valid
-    end
-
-    it 'fails with non-unique uuid', :aggregate_failures do
-      entity = build(model, uuid: existing_entity.uuid)
-      expect(entity).not_to be_valid
-      expect(entity.errors.messages).to have_key(:uuid)
-    end
-  end
+  it { is_expected.to validate_presence_of(:uuid) }
+  it { is_expected.to validate_uniqueness_of(:uuid) }
 
   describe '#new' do
+    subject { described_class.new(uuid:) }
+
     context 'when explicit uuid is given' do
+      let(:uuid) { SecureRandom.uuid }
+
       it 'does not change uuid' do
-        uuid = SecureRandom.uuid
-        entity = described_class.new(uuid:)
-        expect(entity.uuid).to eq(uuid)
+        expect(subject.uuid).to eq(uuid)
       end
     end
 
     context 'when uuid is not given' do
-      let(:entity) { described_class.new }
+      subject { described_class.new }
 
       it_behaves_like 'assigning new uuid'
     end
 
     context 'when uuid is nil' do
-      let(:entity) { described_class.new(uuid: nil) }
+      let(:uuid) { nil }
 
       it_behaves_like 'assigning new uuid'
     end

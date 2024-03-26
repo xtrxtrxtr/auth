@@ -6,6 +6,9 @@ RSpec.describe Site do
   let!(:existing_site) { create(:site) }
 
   it_behaves_like 'has_valid_factory'
+  it_behaves_like 'has_uuid'
+
+  it { is_expected.to have_secure_token }
 
   describe 'validation' do
     it 'passes with unique host' do
