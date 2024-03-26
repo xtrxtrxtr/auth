@@ -6,6 +6,6 @@ module HasUuid
 
   included do
     after_initialize { self.uuid = SecureRandom.uuid if uuid.nil? }
-    validates :uuid, presence: true, uniqueness: true
+    validates :uuid, presence: true, uniqueness: { case_sensitive: false }
   end
 end

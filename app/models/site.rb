@@ -13,5 +13,8 @@ class Site < ApplicationRecord
 
   has_secure_token
 
-  validates :host, presence: true, uniqueness: true
+  validates :host,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 10, maximum: 100 }
 end

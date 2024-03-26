@@ -3,28 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Site do
-  let!(:existing_site) { create(:site) }
+  before do
+    create(:site)
+  end
 
   it_behaves_like 'has_valid_factory'
   it_behaves_like 'has_uuid'
 
   it { is_expected.to have_secure_token }
-
-  describe 'validation' do
-    it 'passes with unique host' do
-      expect(build(:site)).to be_valid
-    end
-
-    it 'fails with non-unique host', :aggregate_failures do
-      entity = build(:site, host: existing_site.host)
-      expect(entity).not_to be_valid
-      expect(entity.errors.messages).to have_key(:host)
-    end
-
-    it 'fails with empty host', :aggregate_failures do
-      entity = build(:site, host: nil)
-      expect(entity).not_to be_valid
-      expect(entity.errors.messages).to have_key(:host)
-    end
-  end
+  # it { is_expected.to have_many(:users) }
+  it { is_expected.to validate_presence_of(:host) }
+  it { is_expected.to validate_length_of(:host).is_at_least(10).is_at_most(100) }
+  it { is_expected.to validate_uniqueness_of(:host).ignoring_case_sensitivity }
 end
