@@ -15,8 +15,10 @@ RSpec.shared_examples_for 'has_uuid' do
       expect(build(model)).to be_valid
     end
 
-    it 'fails with non-unique uuid' do
-      expect(build(model, uuid: existing_entity.uuid)).not_to be_valid
+    it 'fails with non-unique uuid', :aggregate_failures do
+      entity = build(model, uuid: existing_entity.uuid)
+      expect(entity).not_to be_valid
+      expect(entity.errors.messages).to have_key(:uuid)
     end
   end
 

@@ -12,12 +12,16 @@ RSpec.describe Site do
       expect(build(:site)).to be_valid
     end
 
-    it 'fails with non-unique host' do
-      expect(build(:site, host: existing_site.host)).not_to be_valid
+    it 'fails with non-unique host', :aggregate_failures do
+      entity = build(:site, host: existing_site.host)
+      expect(entity).not_to be_valid
+      expect(entity.errors.messages).to have_key(:host)
     end
 
-    it 'fails with empty host' do
-      expect(build(:site, host: nil)).not_to be_valid
+    it 'fails with empty host', :aggregate_failures do
+      entity = build(:site, host: nil)
+      expect(entity).not_to be_valid
+      expect(entity.errors.messages).to have_key(:host)
     end
   end
 end
