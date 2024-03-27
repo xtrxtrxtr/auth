@@ -12,9 +12,11 @@ class Site < ApplicationRecord
   include HasUuid
 
   has_secure_token
+  has_many :users, dependent: :nullify
 
+  validates :active, inclusion: { in: [true, false] }
   validates :host,
             presence: true,
             uniqueness: { case_sensitive: false },
-            length: { minimum: 10, maximum: 100 }
+            length: { minimum: 4, maximum: 100 }
 end
