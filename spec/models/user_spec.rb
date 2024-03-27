@@ -8,6 +8,7 @@ RSpec.describe User do
   end
 
   it_behaves_like 'has_uuid'
+  it_behaves_like 'has_dynamic_default_attribute', :referral_code, 'referral'
   it_behaves_like 'has_required_boolean_attribute', :active
   it_behaves_like 'has_required_boolean_attribute', :bot
   it_behaves_like 'has_required_hash_attribute', :data
@@ -31,20 +32,4 @@ RSpec.describe User do
   it { is_expected.to validate_length_of(:slug).is_at_least(1).is_at_most(16) }
   it { is_expected.to allow_value('Maxim').for(:slug) }
   it { is_expected.not_to allow_value('Who?!').for(:slug) }
-
-  describe '#new' do
-    context 'when referral_code is given' do
-      let(:referral_code) { 'referral' }
-
-      it 'does not assign new referral code' do
-        expect(described_class.new(referral_code:).referral_code).to eq(referral_code)
-      end
-    end
-
-    context 'when referral_code is not given' do
-      it 'assigns new referral code' do
-        expect(described_class.new.referral_code).to be_present
-      end
-    end
-  end
 end
