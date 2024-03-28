@@ -11,10 +11,8 @@ RSpec.describe User do
   it_behaves_like 'has_dynamic_default_attribute', :referral_code, 'referral'
   it_behaves_like 'has_required_boolean_attribute', :active
   it_behaves_like 'has_required_boolean_attribute', :bot
-  it_behaves_like 'has_required_hash_attribute', :data
   it_behaves_like 'has_required_boolean_attribute', :email_confirmed
   it_behaves_like 'has_required_hash_attribute', :profile
-  it_behaves_like 'has_required_hash_attribute', :settings
   it_behaves_like 'has_required_boolean_attribute', :super_user
 
   it { is_expected.to belong_to(:site).optional }

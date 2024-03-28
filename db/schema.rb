@@ -37,13 +37,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_232246) do
     t.boolean "email_confirmed", default: false, null: false, comment: "Email is confirmed"
     t.string "email", null: false, comment: "Primary email"
     t.inet "ip_address", comment: "IP address at the moment of registration"
-    t.date "birthday", comment: "Birthday"
     t.string "password_digest", null: false, comment: "Encrypted password"
-    t.uuid "image_uuid", comment: "Image"
     t.string "notice", comment: "Administrative notice"
     t.string "referral_code", comment: "Referral code"
-    t.jsonb "data", default: {}, null: false, comment: "Components-related data"
-    t.jsonb "settings", default: {}, null: false, comment: "Settings"
     t.jsonb "profile", default: {}, null: false, comment: "Profile"
     t.datetime "deleted_at", comment: "Timestamp when user was deleted"
     t.datetime "created_at", null: false

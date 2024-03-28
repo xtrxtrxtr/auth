@@ -7,18 +7,15 @@
 #   birthday [Date]
 #   bot [Boolean], required
 #   created_at [DateTime]
-#   data [JSON], required
 #   deleted_at [DateTime]
 #   email [String], required
 #   email_confirmed [Boolean], required
-#   image_uuid [UUID]
 #   inviter_id [User]
 #   ip_address [inet]
 #   notice [String]
 #   password_digest [String], required
 #   profile [JSON], required
 #   referral_code [String]
-#   settings [JSON], required
 #   site [Site]
 #   slug [String], required
 #   super_user [Boolean], required
@@ -41,7 +38,6 @@ class User < ApplicationRecord
 
   validates :active, inclusion: { in: [true, false] }
   validates :bot, inclusion: { in: [true, false] }
-  validates :data, hash_field: true
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },
@@ -53,7 +49,6 @@ class User < ApplicationRecord
             uniqueness: true,
             length: { minimum: 1, maximum: 16 },
             allow_nil: true
-  validates :settings, hash_field: true
   validates :slug,
             uniqueness: { case_sensitive: false },
             format: /\A[_a-z0-9]+\z/i,

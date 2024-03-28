@@ -3,6 +3,7 @@
 # Site
 #
 # Attributes:
+#   active [Boolean], required
 #   created_at [DateTime]
 #   host [String], required
 #   token [String], required

@@ -14,13 +14,9 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.boolean :email_confirmed, null: false, default: false, comment: 'Email is confirmed'
       t.string :email, null: false, comment: 'Primary email'
       t.inet :ip_address, comment: 'IP address at the moment of registration'
-      t.date :birthday, comment: 'Birthday'
       t.string :password_digest, null: false, comment: 'Encrypted password'
-      t.uuid :image_uuid, comment: 'Image'
       t.string :notice, comment: 'Administrative notice'
       t.string :referral_code, index: { unique: true }, comment: 'Referral code'
-      t.jsonb :data, null: false, default: {}, comment: 'Components-related data'
-      t.jsonb :settings, null: false, default: {}, comment: 'Settings'
       t.jsonb :profile, null: false, default: {}, index: { using: :gin }, comment: 'Profile'
       t.datetime :deleted_at, comment: 'Timestamp when user was deleted'
       t.timestamps
