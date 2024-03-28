@@ -28,6 +28,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
+  gem 'pry'
   gem 'rspec-rails', '~> 6.1'
   gem 'shoulda-matchers'
 end

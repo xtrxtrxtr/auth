@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_25_232246) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_27_230007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "components", comment: "Components", force: :cascade do |t|
+    t.uuid "uuid", null: false
+    t.string "slug", null: false
+    t.integer "priority", limit: 2, default: 1, null: false, comment: "Priority for order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower((slug)::text)", name: "index_components_on_lower_slug", unique: true
+    t.index ["uuid"], name: "index_components_on_uuid", unique: true
+  end
 
   create_table "sites", comment: "Sites", force: :cascade do |t|
     t.string "host", null: false, comment: "Hostname"
