@@ -4,7 +4,7 @@
 class CreateSites < ActiveRecord::Migration[7.1]
   def change
     create_table :sites, comment: 'Sites' do |t|
-      t.string :host, null: false, comment: 'Hostname'
+      t.string :host, collation: 'C', null: false, comment: 'Hostname'
       t.string :token, null: false, index: { unique: true }, comment: 'Authentication token'
       t.uuid :uuid, null: false, index: { unique: true }
       t.boolean :active, null: false, default: true
