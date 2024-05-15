@@ -24,6 +24,6 @@ class CreateUsers < ActiveRecord::Migration[7.1]
 
     add_foreign_key :users, :users, column: :inviter_id, on_update: :cascade, on_delete: :nullify
     add_index :users, 'lower(slug)', unique: true
-    add_index :users, 'lower(email) varchar_pattern_ops', unique: true
+    add_index :users, 'lower(email)', unique: true
   end
 end

@@ -10,9 +10,11 @@ RSpec.describe Site do
   it_behaves_like 'has_uuid'
   it_behaves_like 'has_required_boolean_attribute', :active
 
-  it { is_expected.to have_secure_token }
-  it { is_expected.to have_many(:users) }
-  it { is_expected.to validate_presence_of(:host) }
-  it { is_expected.to validate_length_of(:host).is_at_least(4).is_at_most(100) }
-  it { is_expected.to validate_uniqueness_of(:host).case_insensitive }
+  describe 'validation' do
+    it { is_expected.to have_secure_token }
+    it { is_expected.to have_many(:users) }
+    it { is_expected.to validate_presence_of(:host) }
+    it { is_expected.to validate_length_of(:host).is_at_least(4).is_at_most(100) }
+    it { is_expected.to validate_uniqueness_of(:host).case_insensitive }
+  end
 end
