@@ -8,7 +8,7 @@
 #   bot [Boolean], required
 #   created_at [DateTime]
 #   deleted_at [DateTime]
-#   email [String], required
+#   email [String]
 #   email_confirmed [Boolean], required
 #   inviter_id [User]
 #   ip_address [inet]
