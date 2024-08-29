@@ -14,7 +14,7 @@ RSpec.describe Users::RegistrationHandler do
       end
 
       it 'returns true' do
-        expect(handler.register(parameters)).to eq(true)
+        expect(handler.register(parameters)).to be(true)
       end
 
       it 'has no errors' do
@@ -37,11 +37,11 @@ RSpec.describe Users::RegistrationHandler do
       let(:parameters) { { slug: 'nope!', password: 'a', password_confirmation: 'b' } }
 
       it 'does not create user' do
-        expect {handler.register(parameters)}.not_to change(User, :count)
+        expect { handler.register(parameters) }.not_to change(User, :count)
       end
 
       it 'returns false' do
-        expect(handler.register(parameters)).to eq(false)
+        expect(handler.register(parameters)).to be(false)
       end
 
       it 'has errors from model', :aggregate_failures do
