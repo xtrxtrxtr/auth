@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_232246) do
     t.boolean "active", default: true, null: false, comment: "User is allowed to log in"
     t.boolean "bot", default: false, null: false, comment: "User can be handled as bot"
     t.boolean "email_confirmed", default: false, null: false, comment: "Email is confirmed"
-    t.string "email", null: false, collation: "C", comment: "Primary email"
+    t.string "email", collation: "C", comment: "Primary email"
     t.inet "ip_address", comment: "IP address at the moment of registration"
     t.string "password_digest", null: false, comment: "Encrypted password"
     t.string "notice", comment: "Administrative notice"

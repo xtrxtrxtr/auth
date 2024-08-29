@@ -39,8 +39,8 @@ class User < ApplicationRecord
   validates :active, inclusion: { in: [true, false] }
   validates :bot, inclusion: { in: [true, false] }
   validates :email,
-            presence: true,
             uniqueness: { case_sensitive: false },
+            allow_nil: true,
             format: URI::MailTo::EMAIL_REGEXP,
             length: { maximum: 200 }
   validates :email_confirmed, inclusion: { in: [true, false] }

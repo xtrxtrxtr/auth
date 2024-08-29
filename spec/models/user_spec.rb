@@ -22,8 +22,7 @@ RSpec.describe User do
     it_behaves_like 'has_required_hash_attribute', :profile
     it_behaves_like 'has_required_boolean_attribute', :super_user
 
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive.allow_nil }
     it { is_expected.to validate_length_of(:email).is_at_most(200) }
     it { is_expected.to allow_value('user@example.org').for(:email) }
     it { is_expected.not_to allow_value('not-a-email').for(:email) }
