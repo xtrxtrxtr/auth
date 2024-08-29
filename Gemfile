@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.1'
+ruby '3.3.4'
 
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
@@ -34,10 +34,11 @@ group :development, :test do
 end
 
 group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-  gem 'rubocop'
-  gem 'rubocop-factory_bot'
-  gem 'rubocop-rails'
-  gem 'rubocop-rspec'
+  gem 'rubocop', '~> 1.65'
+  gem 'rubocop-factory_bot', '~> 2.26'
+  gem 'rubocop-performance', '~> 1.21'
+  gem 'rubocop-rails', '~> 2.26'
+  gem 'rubocop-rake', '~> 0.6.0'
+  gem 'rubocop-rspec', '~> 3.0'
+  gem 'rubocop-rspec_rails', '~> 2.30'
 end
