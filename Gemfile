@@ -18,11 +18,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'dotenv-rails', '~> 3.1'
 gem 'jbuilder'
+gem 'jwt', '~> 2.9'
 gem 'kaminari', '~> 1.2'
+gem 'rack-cors', '~> 2.0'
 gem 'rails-i18n', '~> 7.0'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
 
 group :development, :test do
   gem 'database_cleaner'
